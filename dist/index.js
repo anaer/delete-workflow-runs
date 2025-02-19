@@ -16,6 +16,7 @@ async function run() {
     const repo_name = splitRepository[1];
     
     var page_number = 1;
+    var total_length = 0;
     var del_runs = new Array();
     const { Octokit } = require("@octokit/rest");
     const octokit = new Octokit({ auth: token });
@@ -29,7 +30,7 @@ async function run() {
         page: page_number
       });
       
-      const total_length = response.data.workflow_runs.length;
+      total_length = response.data.workflow_runs.length;
       console.log(`workflow runs count: ${total_length}`);
       
       if (total_length < 1) {
