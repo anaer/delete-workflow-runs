@@ -41,7 +41,7 @@ async function run() {
           var current = new Date();
           var ELAPSE_ms = current.getTime() - created_at.getTime();
           var ELAPSE_days = ELAPSE_ms / (1000 * 3600 * 24);
-          
+          console.log(`${index} ELAPSE_days: ${ELAPSE_days}`);
           if (ELAPSE_days >= retain_days) {
             del_runs.push(response.data.workflow_runs[index].id);
           }
