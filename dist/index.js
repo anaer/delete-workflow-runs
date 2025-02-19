@@ -29,14 +29,14 @@ async function run() {
         page: page_number
       });
       
-      const length = response.data.workflow_runs.length;
-      console.log(`workflow runs count: ${length}`);
+      const total_length = response.data.workflow_runs.length;
+      console.log(`workflow runs count: ${total_length}`);
       
-      if (length < 1) {
+      if (total_length < 1) {
         break;
       }
       else {
-        for (index = 0; index < length; index++) {
+        for (index = 0; index < total_length; index++) {
           var created_at = new Date(response.data.workflow_runs[index].created_at);
           var current = new Date();
           var ELAPSE_ms = current.getTime() - created_at.getTime();
@@ -48,14 +48,14 @@ async function run() {
         }
       }
       
-      if (length < 100) {
+      if (total_length < 100) {
         break;
       }
       page_number++;
     }
 
     console.log(`workflow del_runs: ${del_runs.length}`);
-    const arr_length = Math.min(del_runs.length, length - keep_minimum_runs);
+    const arr_length = Math.min(del_runs.length, total_length - keep_minimum_runs);
     if (arr_length < 1) {
       console.log(`No workflow runs need to be deleted.`);
     }
